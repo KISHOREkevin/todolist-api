@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
-
-mongoose.connect("mongodb+srv://Test123:test123@cluster0.z4iqe9j.mongodb.net/taskDB").then(()=>console.log("Database connected"));
+import "dotenv/config";
+mongoose.connect(process.env.MONGO_URI).then(()=>console.log("Database connected"));
 
 const app = express();
 app.use(express.json());
@@ -86,4 +86,4 @@ app.delete("/delete-task/:taskid",async(req,res)=>{
     }
 })
 
-app.listen(3000,()=>console.log("Server started @ 3000...."))
+app.listen(process.env.PORT,()=>console.log("Server started @ 3000...."))
